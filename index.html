@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پیمان حسینی - مهندس عمران و طراح سازه</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700&display=swap');
+        @import url('https://cdn.fontcdn.ir/Font/Persian/B_Titr/B_Titr.css');
+        
+        * {
+            font-family: 'Vazirmatn', sans-serif;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #001746 0%, #001746 100%);
+        }
+        
+        .contact-gradient-bg {
+            background: linear-gradient(135deg, #002E18 0%, #002E18 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+        
+        .section-fade {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+        
+        .section-fade.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .contact-btn {
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .nav-link.active {
+            background-color: #374151;
+            color: #60a5fa;
+        }
+        
+        .nav-link.active i {
+            color: #60a5fa;
+        }
+        
+
+    </style>
+</head>
+<body class="bg-gray-50 pr-64">
+    <!-- Fixed Navigation Sidebar -->
+    <nav class="fixed top-0 right-0 h-full w-64 shadow-lg z-50 overflow-y-auto" style="background-color: #000000;">
+        <div class="p-6">
+            <ul class="space-y-2">
+                <li>
+                    <a href="#home" class="nav-link flex items-center p-3 rounded-lg text-white hover:bg-gray-800 hover:text-blue-400 transition-all duration-300 text-sm">
+                        <i class="fas fa-home ml-3 text-base text-white"></i>
+                        <span class="font-medium">صفحه نخست</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#about" class="nav-link flex items-center p-3 rounded-lg text-white hover:bg-gray-800 hover:text-blue-400 transition-all duration-300 text-sm">
+                        <i class="fas fa-user ml-3 text-base text-white"></i>
+                        <span class="font-medium">درباره من</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#portfolio" class="nav-link flex items-center p-3 rounded-lg text-white hover:bg-gray-800 hover:text-blue-400 transition-all duration-300 text-sm">
+                        <i class="fas fa-briefcase ml-3 text-base text-white"></i>
+                        <span class="font-medium">پروژه‌های طراحی سازه</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#courses" class="nav-link flex items-center p-3 rounded-lg text-white hover:bg-gray-800 hover:text-blue-400 transition-all duration-300 text-sm">
+                        <i class="fas fa-graduation-cap ml-3 text-base text-white"></i>
+                        <span class="font-medium">دوره‌های آموزشی</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#software" class="nav-link flex items-center p-3 rounded-lg text-white hover:bg-gray-800 hover:text-blue-400 transition-all duration-300 text-sm">
+                        <i class="fas fa-laptop-code ml-3 text-base text-white"></i>
+                        <span class="font-medium">نرم‌افزارهای توسعه یافته</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#contact" class="nav-link flex items-center p-3 rounded-lg text-white hover:bg-gray-800 hover:text-blue-400 transition-all duration-300 text-sm">
+                        <i class="fas fa-envelope ml-3 text-base text-white"></i>
+                        <span class="font-medium">راه‌های ارتباطی</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="home" class="gradient-bg text-white min-h-screen flex items-center">
+        <div class="container mx-auto px-8 text-center">
+            <div class="mb-6">
+                <div class="w-52 h-52 bg-white rounded-full mx-auto mb-6 overflow-hidden">
+                    <img src="pictures/profile.jpg" alt="پیمان حسینی" class="w-full h-full object-cover">
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-8" style="font-family: 'B Titr', 'Vazirmatn', sans-serif;">پیمان حسینی</h1>
+                <p class="text-lg md:text-xl mb-6">کارشناس ارشد مهندسی عمران - گرایش زلزله</p>
+                <div class="flex flex-col items-center gap-3 text-lg">
+                    <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">طراح سازه</span>
+                    <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">مدرس دوره‌های تخصصی عمران</span>
+                    <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full">توسعه‌دهنده نرم‌افزارهای مهندسی عمران</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="min-h-screen flex items-center section-fade">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-8">درباره من</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-24 text-center text-justify max-w-4xl mx-auto">
+                    بیش از ۵ سال تجربه در طراحی و کنترل سازه‌های بتنی و فولادی را داشته و مسلط به نرم‌افزارهای طراحی سازه هستم. خلاقیت و علاقه به برنامه‌نویسی، منجر به توسعه چندین نرم‌افزار تخصصی عمران شده و در کنار آن، با برگزاری دوره‌ها و وبینارهای آموزشی، دانش خود را با دیگران به اشتراک گذاشته‌ام.
+                </p>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="text-center">
+                        <i class="fas fa-building text-4xl text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">طراحی سازه</h3>
+                        <p class="text-gray-600">طراحی انواع سازه‌های بتنی و فولادی با ارائه توضیحات طراحی بر اساس عملکرد به کارفرما</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-chalkboard-teacher text-4xl text-green-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">آموزش تخصصی</h3>
+                        <p class="text-gray-600">ارائه دوره آموزشی صفر تا صد نرم‌افزار پارنو و آیمدل و برگذاری کلاس‌های آموزشی در حوزه طراحی سازه و برنامه‌نویسی</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-code text-4xl text-purple-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">توسعه نرم‌افزار</h3>
+                        <p class="text-gray-600">تولید کننده نرم‌افزارهای تخصصی در زمینه‌های مختلف عمرانی و کسب جوایز مسابقات مختلف</p>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="bg-white section-fade" style="min-height: 200vh;">
+        <!-- Header Section (35% of viewport) -->
+        <div class="flex items-center justify-center bg-white" style="height: 35vh;">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">پروژه‌های طراحی سازه</h2>
+                <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto text-center text-justify">
+                    با سال‌ها تجربه در طراحی انواع سازه‌های بتنی و فولادی، پروژه‌های متعددی را با موفقیت به مرحله اجرا رسانده‌ام که نمونه‌های آنرا در ادامه مشاهده می‌کنید. اکنون آماده‌ام طراحی سازه پروژه شما را با بالاترین استانداردهای فنی و آیین‌نامه‌ای انجام دهم. جهت مشاوره از طریق یکی از راه‌های ارتباطی انتهای سایت با من در ارتباط باشید.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Projects Section (165% of viewport) -->
+        <div class="bg-white" style="min-height: 165vh; padding: 2rem 0;">
+            <div class="container mx-auto px-6">
+                <div class="max-w-4xl mx-auto">
+                    <div class="space-y-3">
+                    <!-- Project 1 -->
+                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">آرامگاه شهدای گمنام</h3>
+                            <div class="space-y-3 text-gray-600">
+                                <p><span class="font-semibold text-gray-800">سیستم سازه‌ای:</span> دیوار طره‌ای</p>
+                                <p><span class="font-semibold text-gray-800">مساحت پروژه:</span> ۸۷ متر مربع</p>
+                                <p><span class="font-semibold text-gray-800">موقعیت پروژه:</span> شهر قم</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 grid grid-cols-2 gap-4">
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project1-1.jpg" alt="آرامگاه شهدای گمنام - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project1-2.jpg" alt="آرامگاه شهدای گمنام - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex-1 grid grid-cols-2 gap-4">
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project2-1.jpg" alt="ساختمان مسکونی 4 طبقه - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project2-2.jpg" alt="ساختمان مسکونی 4 طبقه - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">ساختمان مسکونی 4 طبقه بتنی</h3>
+                            <div class="space-y-3 text-gray-600">
+                                <p><span class="font-semibold text-gray-800">سیستم سازه‌ای:</span> قاب خمشی متوسط بتنی</p>
+                                <p><span class="font-semibold text-gray-800">مساحت پروژه:</span> ۷۸۰ متر مربع</p>
+                                <p><span class="font-semibold text-gray-800">موقعیت پروژه:</span> شهر مریوان</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">شهربازی کیش</h3>
+                            <div class="space-y-3 text-gray-600">
+                                <p><span class="font-semibold text-gray-800">سیستم سازه‌ای:</span> قاب خمشی متوسط بتنی با دیوار حائل</p>
+                                <p><span class="font-semibold text-gray-800">مساحت پروژه:</span> ۳۰۰ متر مربع</p>
+                                <p><span class="font-semibold text-gray-800">موقعیت پروژه:</span> جزیره کیش</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 grid grid-cols-2 gap-4">
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project3-1.jpg" alt="شهربازی کیش - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project3-2.jpg" alt="شهربازی کیش - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 4 -->
+                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex-1 grid grid-cols-2 gap-4">
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project4-1.jpg" alt="کارگاه موقت تولید قارچ - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project4-2.jpg" alt="کارگاه موقت تولید قارچ - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">کارگاه موقت تولید قارچ</h3>
+                            <div class="space-y-3 text-gray-600">
+                                <p><span class="font-semibold text-gray-800">سیستم سازه‌ای:</span> قاب فولادی مهاربندی همگرا</p>
+                                <p><span class="font-semibold text-gray-800">مساحت پروژه:</span> ۴۰۰ متر مربع</p>
+                                <p><span class="font-semibold text-gray-800">موقعیت پروژه:</span> شهر سروآباد</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 5 -->
+                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-gray-800 mb-4">ساختمان مسکونی فولادی 2 طبقه</h3>
+                            <div class="space-y-3 text-gray-600">
+                                <p><span class="font-semibold text-gray-800">سیستم سازه‌ای:</span> قاب مهاربندی شده همگرای ویژه</p>
+                                <p><span class="font-semibold text-gray-800">مساحت پروژه:</span> ۲۲۰ متر مربع</p>
+                                <p><span class="font-semibold text-gray-800">موقعیت پروژه:</span> شهر مریوان</p>
+                            </div>
+                        </div>
+                        <div class="flex-1 grid grid-cols-2 gap-4">
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project5-1.jpg" alt="ساختمان مسکونی فولادی - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                                <img src="pictures/project5-2.jpg" alt="ساختمان مسکونی فولادی - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="courses" class="min-h-screen flex items-center section-fade">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">دوره‌های آموزشی</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
+                    <div class="mb-6 flex justify-start">
+                        <div class="w-20 h-20 overflow-hidden rounded-lg">
+                            <img src="pictures/parno-logo.png" alt="Parno Software Logo" class="w-full h-full object-contain">
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">آموزش صفر تا صد نرم‌افزارهای پارنو و آیمدل</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-center text-justify">
+                        در این دوره آموزشی نرم‌افزارهای پارنو و آیمدل به صورت دقیق و کامل توضیح داده شده است. در این دوره تمامی منوها و گزینه‌های موجود در نرم‌افزار پارنو و آیمدل توضیح داده شده و به صورت همزمان پروژه‌هایی در نرم‌افزارها ایجاد شده و چالش‌ها و خطاها و اخطارهای کنترلی احتمالی بررسی شده است. همچنین ترفندهای حرفه‌ای بهینه‌سازی در نرم‌افزار پارنو و امکانات جالب نرم‌افزار که در ترسیمات می‌تواند ما را به نقشه دلخواهمان نزدیکتر کند، شرح داده شده است.
+                    </p>
+                    <div class="flex justify-between items-center">
+                        <div class="text-sm text-gray-500">
+                            <p>تعداد قسمت‌ها: ۱۵ قسمت</p>
+                            <p>مدت زمان: ۹ ساعت</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <button id="courseInfoBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">نحوه تهیه دوره آموزشی</button>
+                            <button id="courseActivationBtn" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition">راهنمای فعالسازی دوره آموزشی</button>
+                            <button id="courseDownloadBtn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">دانلود دوره آموزشی</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Section -->
+    <section id="software" class="min-h-screen flex items-center bg-white section-fade">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4">نرم‌افزارهای توسعه یافته</h2>
+                <p class="text-lg text-gray-600 leading-relaxed text-center text-justify">
+                    یکی از حوزه‌های مورد علاقه من برنامه‌نویسی می‌باشد و همواره سعی کرده‌ام برنامه‌هایی را که در حوزه عمران می‌تواند کمک کننده باشد را تولید کنم و این راه را نیز تا تولید محصولات بیشتر و رفع نیاز بیشتر ادامه خواهم داد. در صورتی که پیشنهاد یا سفارشی برای ساخت یک برنامه دارید، خوشحال می‌شوم آنرا با من به اشتراک بگذارید.
+                </p>
+            </div>
+            <div class="max-w-4xl mx-auto">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 card-hover">
+                        <div class="w-12 h-12 mb-4 overflow-hidden rounded-lg">
+                            <img src="pictures/steel-column-logo.png" alt="Steel Column Design 21 Logo" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Steel Column Design 21</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">نرم‌افزار طراحی ستون فولادی در حالت‌های مختلف ستون تک، ستون در قاب دوبعدی و ستون در قاب سه‌بعدی است که امکان تعریف مقطع، طراحی ستون و کنترل مقطع برای بارگذاری مورد نظر را دارد.</p>
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded">C#</span>
+                            <span class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded">Windows</span>
+                        </div>
+                        <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition text-sm">دانلود</button>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 card-hover">
+                        <div class="w-12 h-12 mb-4 overflow-hidden rounded-lg">
+                            <img src="pictures/retaining-wall-logo.png" alt="Retaining Wall 21 Logo" class="w-full h-full object-contain">
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Retaining Wall 21</h3>
+                        <p class="text-gray-600 mb-4 text-sm leading-relaxed">نرم‌افزار طراحی دیوار حائل طره‌ای بتنی است که طراحی ابعاد و میلگرد مورد نیاز پی و دیوار حائل را با توجه به ارتفاع و وضعیت خاک پشت دیوار و ... انجام می‌دهد و گزارش طراحی را نیز در اختیار کاربر قرار می‌دهد.</p>
+                        <div class="flex gap-2 mb-4">
+                            <span class="text-xs bg-green-200 text-green-800 px-2 py-1 rounded">C#</span>
+                            <span class="text-xs bg-gray-200 text-gray-800 px-2 py-1 rounded">Windows</span>
+                        </div>
+                        <button class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition text-sm">دانلود</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="min-h-screen flex items-center contact-gradient-bg text-white section-fade">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-8 mt-16">راه‌های ارتباطی</h2>
+            <div class="max-w-4xl mx-auto">
+                <p class="text-lg mb-8 text-center text-justify max-w-3xl mx-auto">جهت دریافت دوره‌های آموزشی، مشاوره و طراحی سازه، همکاری با من و ارائه پیشنهاد نرم‌افزاری، از طریق یکی از راه‌های زیر با من در ارتباط باشید.</p>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="https://www.instagram.com/payman.hosseini?igsh=eTlpbXRwbTJjZmw2" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fab fa-instagram text-3xl mb-3"></i>
+                        <h3 class="font-semibold mb-2">اینستاگرام</h3>
+                        <p class="text-sm opacity-90">@payman.hosseini</p>
+                    </a>
+                    
+                    <a href="https://t.me/Soft4Civil" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fab fa-telegram text-3xl mb-3"></i>
+                        <h3 class="font-semibold mb-2">تلگرام</h3>
+                        <p class="text-sm opacity-90">@Soft4Civil</p>
+                    </a>
+                    
+                    <a href="mailto:soft4civil@gmail.com" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fas fa-envelope text-3xl mb-3"></i>
+                        <h3 class="font-semibold mb-2">ایمیل</h3>
+                        <p class="text-sm opacity-90">soft4civil@gmail.com</p>
+                    </a>
+                    
+                    <a href="https://wa.me/qr/3FHS4T5W7YXGD1" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fab fa-whatsapp text-3xl mb-3"></i>
+                        <h3 class="font-semibold mb-2">واتس‌آپ</h3>
+                        <p class="text-sm opacity-90">پیام در واتس‌آپ</p>
+                    </a>
+                    
+                    <a href="tel:+989210833484" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fas fa-phone text-3xl mb-3"></i>
+                        <h3 class="font-semibold mb-2">تماس تلفنی</h3>
+                        <p class="text-sm opacity-90">۰۹۲۱-۰۸۳-۳۴۸۴</p>
+                    </a>
+                    
+                    <a href="https://eitaa.com/soft4civil" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fas fa-paper-plane text-3xl mb-3"></i>
+                        <h3 class="font-semibold mb-2">ایتا</h3>
+                        <p class="text-sm opacity-90">@soft4civil</p>
+                    </a>
+                </div>
+                
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Course Info -->
+    <div id="courseModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
+        <div class="bg-white rounded-lg p-8 max-w-md mx-4 relative">
+            <button id="closeModal" class="absolute top-4 left-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+            <div class="text-center">
+                <i class="fas fa-info-circle text-4xl text-blue-600 mb-4"></i>
+                <h3 class="text-xl font-bold text-gray-800 mb-4">نحوه تهیه دوره آموزشی</h3>
+                <p class="text-gray-600 leading-relaxed text-center text-justify">
+                    برای تهیه دوره آموزشی نرم‌افزار پارنو، از طریق یکی از راه‌های ارتباطی موجود در انتهای سایت به بنده پیام داده و موضوع را مطرح نمایید.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+        <div class="relative max-w-4xl max-h-full">
+            <button id="closeImageModal" class="absolute -top-10 left-0 text-white hover:text-gray-300 text-3xl">&times;</button>
+            <img id="modalImage" src="" alt="" class="max-w-full max-h-full object-contain rounded-lg">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="mb-4">&copy; ۱۴۰۴ پیمان حسینی. تمامی حقوق محفوظ است.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling animation for sections
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections with fade animation
+        document.querySelectorAll('.section-fade').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add click handlers for course and software buttons
+        document.querySelectorAll('button').forEach(button => {
+            if (button.textContent.includes('دانلود') && !button.id) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('این بخش در حال توسعه است. لطفاً از طریق راه‌های ارتباطی با من تماس بگیرید.');
+                });
+            }
+        });
+
+        // Course Info Button - Show Modal
+        document.getElementById('courseInfoBtn').addEventListener('click', function() {
+            document.getElementById('courseModal').classList.remove('hidden');
+        });
+
+        // Course Activation Button - Open Link
+        document.getElementById('courseActivationBtn').addEventListener('click', function() {
+            window.open('https://drive.google.com/file/d/1qnji3DD1wzo1MjOnNhot-VE18anjYJnm/view?usp=drive_link', '_blank');
+        });
+
+        // Course Download Button - Open Link
+        document.getElementById('courseDownloadBtn').addEventListener('click', function() {
+            window.open('https://drive.google.com/file/d/1Xi2KQnLr_iAvhEGPHK1mDjV0lzUFjrt_/view?usp=sharing', '_blank');
+        });
+
+        // Close Modal
+        document.getElementById('closeModal').addEventListener('click', function() {
+            document.getElementById('courseModal').classList.add('hidden');
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('courseModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        // Image Modal Functions
+        function openImageModal(img) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modalImg.src = img.src;
+            modalImg.alt = img.alt;
+            modal.classList.remove('hidden');
+        }
+
+        // Close Image Modal
+        document.getElementById('closeImageModal').addEventListener('click', function() {
+            document.getElementById('imageModal').classList.add('hidden');
+        });
+
+        // Close image modal when clicking outside
+        document.getElementById('imageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+
+        // Navigation functionality
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section, header');
+
+        // Smooth scroll for navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update active navigation item on scroll
+        const updateActiveNav = () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        };
+
+        window.addEventListener('scroll', updateActiveNav);
+        updateActiveNav(); // Call once on load
+
+
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'96d20a3d3435928d',t:'MTc1NDg1NTYxMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
