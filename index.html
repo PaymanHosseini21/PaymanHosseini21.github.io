@@ -12,6 +12,7 @@
         
         * {
             font-family: 'Vazirmatn', sans-serif;
+            box-sizing: border-box;
         }
         
         .gradient-bg {
@@ -60,23 +61,135 @@
             color: #2dd4bf;
         }
 
+        /* ===== NAVBAR ===== */
+        .top-navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 60px;
+            background-color: #001746;
+            z-index: 50;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .navbar-inner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            padding: 0 16px;
+            position: relative;
+        }
+
+        /* Nav menu - desktop */
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            overflow-x: auto;
+            scrollbar-width: none;
+            padding: 0 120px;
+        }
+        .nav-menu::-webkit-scrollbar {
+            display: none;
+        }
+        .nav-menu ul {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+        /* Controls - always physical left */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: absolute;
+            left: 16px;
+            right: auto !important;
+            top: 50%;
+            transform: translateY(-50%);
+            direction: ltr;
+            z-index: 10;
+            flex-shrink: 0;
+        }
+
+        /* Hamburger button - hidden on desktop */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            padding: 8px;
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        /* Mobile menu overlay */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: #001746;
+            z-index: 49;
+            padding: 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            max-height: calc(100vh - 60px);
+            overflow-y: auto;
+        }
+        .mobile-menu.open {
+            display: block;
+        }
+        .mobile-menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .mobile-menu .nav-link {
+            display: block;
+            padding: 12px 16px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+        .mobile-menu .nav-link:hover,
+        .mobile-menu .nav-link.active {
+            background-color: rgba(45, 212, 191, 0.15);
+            color: #2dd4bf !important;
+        }
+
         /* Theme Toggle Switch */
         .theme-switch {
             position: relative;
-            width: 52px;
-            height: 28px;
+            width: 48px;
+            height: 26px;
             background: rgba(255,255,255,0.15);
-            border-radius: 14px;
+            border-radius: 13px;
             cursor: pointer;
             transition: background 0.3s ease;
             border: 2px solid rgba(255,255,255,0.3);
+            flex-shrink: 0;
         }
         .theme-switch .switch-handle {
             position: absolute;
             top: 2px;
             left: 2px;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             background: #fbbf24;
             border-radius: 50%;
             transition: all 0.3s ease;
@@ -85,7 +198,7 @@
             justify-content: center;
         }
         .theme-switch .switch-handle i {
-            font-size: 11px;
+            font-size: 10px;
             color: #92400e;
         }
         html.dark .theme-switch {
@@ -93,7 +206,7 @@
             border-color: #3b82f6;
         }
         html.dark .theme-switch .switch-handle {
-            left: 26px;
+            left: 22px;
             background: #60a5fa;
         }
         html.dark .theme-switch .switch-handle i {
@@ -103,60 +216,101 @@
         /* Language Toggle */
         .lang-btn {
             cursor: pointer;
-            padding: 4px 12px;
+            padding: 3px 10px;
             border-radius: 6px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 600;
             transition: all 0.3s ease;
             border: 2px solid rgba(255,255,255,0.3);
             background: rgba(255,255,255,0.15);
             color: #e5e7eb;
+            flex-shrink: 0;
+            white-space: nowrap;
         }
         .lang-btn:hover {
             border-color: #2dd4bf;
             color: #2dd4bf;
         }
 
-        /* Controls container - always on the physical left */
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            position: absolute;
-            left: 24px;
-            right: auto !important;
-            top: 50%;
-            transform: translateY(-50%);
-            direction: ltr;
-            z-index: 10;
-        }
-
-        /* Responsive nav: prevent overlap */
-        .nav-menu {
-            max-width: calc(100% - 180px);
-            display: flex;
-            justify-content: center;
-            overflow-x: auto;
-            scrollbar-width: none;
-        }
-        .nav-menu::-webkit-scrollbar {
-            display: none;
-        }
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 1100px) {
             .nav-menu .nav-link {
-                padding: 8px 10px;
+                padding: 8px 8px;
                 font-size: 12px;
             }
             .nav-menu ul {
                 gap: 0;
             }
         }
-        @media (max-width: 850px) {
+
+        /* Tablet and below: show hamburger, hide desktop menu */
+        @media (max-width: 768px) {
             .nav-menu {
-                max-width: calc(100% - 160px);
+                display: none !important;
             }
-            .nav-menu .nav-link span {
+            .hamburger-btn {
+                display: block;
+            }
+            .nav-controls {
+                left: 12px;
+                gap: 8px;
+            }
+            .theme-switch {
+                width: 44px;
+                height: 24px;
+            }
+            .theme-switch .switch-handle {
+                width: 16px;
+                height: 16px;
+            }
+            html.dark .theme-switch .switch-handle {
+                left: 20px;
+            }
+            .lang-btn {
+                padding: 2px 8px;
                 font-size: 11px;
+            }
+        }
+
+        /* Mobile project cards: stack vertically */
+        @media (max-width: 768px) {
+            #portfolio .flex.items-center.gap-8 {
+                flex-direction: column !important;
+                gap: 16px;
+            }
+            #portfolio .flex-1 {
+                width: 100%;
+            }
+            /* Course buttons: stack vertically */
+            #courses .flex.gap-4 {
+                flex-direction: column;
+                gap: 8px;
+            }
+            #courses .flex.justify-between {
+                flex-direction: column;
+                gap: 16px;
+            }
+            #courses button {
+                width: 100%;
+                text-align: center;
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+            /* Contact grid */
+            #contact .grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-navbar {
+                height: 56px;
+            }
+            body {
+                padding-top: 56px !important;
+            }
+            .mobile-menu {
+                top: 56px;
             }
         }
 
@@ -228,6 +382,9 @@
         html.dark .bg-gray-200 {
             background-color: #374151 !important;
         }
+        html.dark .mobile-menu {
+            background-color: #0a1628;
+        }
 
         /* CV Download Button */
         .cv-btn {
@@ -250,70 +407,109 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 pt-16">
+<body class="bg-gray-50" style="padding-top: 60px;">
     <!-- Fixed Top Navigation Bar -->
-    <nav class="fixed top-0 right-0 left-0 h-16 shadow-lg z-50" style="background-color: #001746;">
-        <div class="container mx-auto h-full px-6 flex items-center justify-center relative">
-            <!-- Center: Navigation Links -->
+    <nav class="top-navbar">
+        <div class="navbar-inner">
+            <!-- Hamburger button (mobile only) -->
+            <button class="hamburger-btn" id="hamburgerBtn" aria-label="منو">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <!-- Desktop Navigation Links -->
             <div class="nav-menu">
-            <ul class="flex items-center gap-1">
-                <li>
-                    <a href="#home" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
-                        <span class="font-medium" data-fa="صفحه نخست" data-en="Home">صفحه نخست</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#about" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
-                        <span class="font-medium" data-fa="درباره من" data-en="About Me">درباره من</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#portfolio" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
-                        <span class="font-medium" data-fa="پروژه‌های طراحی سازه" data-en="Structural Projects">پروژه‌های طراحی سازه</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#courses" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
-                        <span class="font-medium" data-fa="دوره‌های آموزشی" data-en="Courses">دوره‌های آموزشی</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#software" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
-                        <span class="font-medium" data-fa="نرم‌افزارهای توسعه یافته" data-en="Developed Software">نرم‌افزارهای توسعه یافته</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#contact" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
-                        <span class="font-medium" data-fa="راه‌های ارتباطی" data-en="Contact">راه‌های ارتباطی</span>
-                    </a>
-                </li>
-            </ul>
+                <ul>
+                    <li>
+                        <a href="#home" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
+                            <span class="font-medium" data-fa="صفحه نخست" data-en="Home">صفحه نخست</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
+                            <span class="font-medium" data-fa="درباره من" data-en="About Me">درباره من</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#portfolio" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
+                            <span class="font-medium" data-fa="پروژه‌های طراحی سازه" data-en="Structural Projects">پروژه‌های طراحی سازه</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#courses" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
+                            <span class="font-medium" data-fa="دوره‌های آموزشی" data-en="Courses">دوره‌های آموزشی</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#software" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
+                            <span class="font-medium" data-fa="نرم‌افزارهای توسعه یافته" data-en="Developed Software">نرم‌افزارهای توسعه یافته</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav-link flex items-center px-4 py-2 text-white hover:text-teal-400 transition-all duration-300 text-sm">
+                            <span class="font-medium" data-fa="راه‌های ارتباطی" data-en="Contact">راه‌های ارتباطی</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
 
-            <!-- Left side (always): Toggle buttons -->
+            <!-- Controls - always physical left -->
             <div class="nav-controls">
-                <!-- Theme Toggle -->
                 <div class="theme-switch" id="themeToggle" title="تغییر تم">
                     <div class="switch-handle">
                         <i class="fas fa-sun"></i>
                     </div>
                 </div>
-                <!-- Language Toggle -->
                 <button class="lang-btn" id="langToggle">EN</button>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li>
+                <a href="#home" class="nav-link mobile-nav-link" data-fa="صفحه نخست" data-en="Home">
+                    <i class="fas fa-home ml-3"></i> صفحه نخست
+                </a>
+            </li>
+            <li>
+                <a href="#about" class="nav-link mobile-nav-link" data-fa="درباره من" data-en="About Me">
+                    <i class="fas fa-user ml-3"></i> درباره من
+                </a>
+            </li>
+            <li>
+                <a href="#portfolio" class="nav-link mobile-nav-link" data-fa="پروژه‌های طراحی سازه" data-en="Structural Projects">
+                    <i class="fas fa-briefcase ml-3"></i> پروژه‌های طراحی سازه
+                </a>
+            </li>
+            <li>
+                <a href="#courses" class="nav-link mobile-nav-link" data-fa="دوره‌های آموزشی" data-en="Courses">
+                    <i class="fas fa-graduation-cap ml-3"></i> دوره‌های آموزشی
+                </a>
+            </li>
+            <li>
+                <a href="#software" class="nav-link mobile-nav-link" data-fa="نرم‌افزارهای توسعه یافته" data-en="Developed Software">
+                    <i class="fas fa-laptop-code ml-3"></i> نرم‌افزارهای توسعه یافته
+                </a>
+            </li>
+            <li>
+                <a href="#contact" class="nav-link mobile-nav-link" data-fa="راه‌های ارتباطی" data-en="Contact">
+                    <i class="fas fa-envelope ml-3"></i> راه‌های ارتباطی
+                </a>
+            </li>
+        </ul>
+    </div>
+
     <!-- Header -->
     <header id="home" class="gradient-bg text-white min-h-screen flex items-center">
-        <div class="container mx-auto px-8 text-center">
+        <div class="container mx-auto px-6 text-center">
             <div class="mb-6">
-                <div class="w-52 h-52 bg-white rounded-full mx-auto mb-6 overflow-hidden">
+                <div class="w-40 h-40 md:w-52 md:h-52 bg-white rounded-full mx-auto mb-6 overflow-hidden">
                     <img src="pictures/profile.jpg" alt="پیمان حسینی" class="w-full h-full object-cover">
                 </div>
-                <h1 class="text-4xl md:text-5xl font-bold mb-8" style="font-family: 'B Titr', 'Vazirmatn', sans-serif;" data-fa="پیمان حسینی" data-en="Payman Hosseini">پیمان حسینی</h1>
-                <p class="text-lg md:text-xl mb-6" data-fa="کارشناس ارشد مهندسی عمران - گرایش زلزله" data-en="M.Sc. in Civil Engineering - Earthquake Engineering">کارشناس ارشد مهندسی عمران - گرایش زلزله</p>
-                <div class="flex flex-col items-center gap-3 text-lg">
+                <h1 class="text-3xl md:text-5xl font-bold mb-6 md:mb-8" style="font-family: 'B Titr', 'Vazirmatn', sans-serif;" data-fa="پیمان حسینی" data-en="Payman Hosseini">پیمان حسینی</h1>
+                <p class="text-base md:text-xl mb-6" data-fa="کارشناس ارشد مهندسی عمران - گرایش زلزله" data-en="M.Sc. in Civil Engineering - Earthquake Engineering">کارشناس ارشد مهندسی عمران - گرایش زلزله</p>
+                <div class="flex flex-col items-center gap-3 text-sm md:text-lg">
                     <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full" data-fa="طراح سازه" data-en="Structural Designer">طراح سازه</span>
                     <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full" data-fa="مدرس دوره‌های تخصصی عمران" data-en="Civil Engineering Instructor">مدرس دوره‌های تخصصی عمران</span>
                     <span class="bg-white bg-opacity-20 px-4 py-2 rounded-full" data-fa="توسعه‌دهنده نرم‌افزارهای مهندسی عمران" data-en="Civil Engineering Software Developer">توسعه‌دهنده نرم‌افزارهای مهندسی عمران</span>
@@ -326,8 +522,8 @@
     <section id="about" class="min-h-screen flex items-center section-fade">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl font-bold text-gray-800 mb-8 dark-text-fix" data-fa="درباره من" data-en="About Me">درباره من</h2>
-                <p class="text-lg text-gray-600 leading-relaxed mb-12 text-center text-justify max-w-4xl mx-auto" data-fa="طراح سازه با بیش از ۶ سال سابقه در طراحی، کنترل و بازطراحی سازه‌های بتنی و فولادی. دارای تجربه بررسی و کنترل فنی بیش از ۱۰۰۰ پروژه سازه‌ای از نظر ضوابط آیین‌نامه‌ای و اجرایی. مسلط به نرم‌افزارهای تخصصی طراحی سازه و دارای توانمندی بالا در حل مسائل مهندسی، بهینه‌سازی طرح‌ها و ارائه راهکارهای اجرایی. فعال در حوزه برنامه‌نویسی مهندسی و توسعه ابزارهای نرم‌افزاری جهت افزایش دقت و سرعت فرآیند طراحی." data-en="Structural Design and Analysis Engineer with over 6 years of experience in the analysis and design of reinforced concrete, steel, and industrial structures, holding an MSc in Earthquake Engineering. Strong background in seismic analysis, performance-based design, and advanced structural modeling using ETABS, SAP2000, SAFE, and AutoCAD. Experienced in integrating engineering judgment with software-based analysis, constructability review, and structural redesign. Comfortable working in technical office environments and remote engineering teams, with a focus on accuracy, code compliance, and practical design solutions.">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-8 dark-text-fix" data-fa="درباره من" data-en="About Me">درباره من</h2>
+                <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-12 text-center text-justify max-w-4xl mx-auto" data-fa="طراح سازه با بیش از ۶ سال سابقه در طراحی، کنترل و بازطراحی سازه‌های بتنی و فولادی. دارای تجربه بررسی و کنترل فنی بیش از ۱۰۰۰ پروژه سازه‌ای از نظر ضوابط آیین‌نامه‌ای و اجرایی. مسلط به نرم‌افزارهای تخصصی طراحی سازه و دارای توانمندی بالا در حل مسائل مهندسی، بهینه‌سازی طرح‌ها و ارائه راهکارهای اجرایی. فعال در حوزه برنامه‌نویسی مهندسی و توسعه ابزارهای نرم‌افزاری جهت افزایش دقت و سرعت فرآیند طراحی." data-en="Structural Design and Analysis Engineer with over 6 years of experience in the analysis and design of reinforced concrete, steel, and industrial structures, holding an MSc in Earthquake Engineering. Strong background in seismic analysis, performance-based design, and advanced structural modeling using ETABS, SAP2000, SAFE, and AutoCAD. Experienced in integrating engineering judgment with software-based analysis, constructability review, and structural redesign. Comfortable working in technical office environments and remote engineering teams, with a focus on accuracy, code compliance, and practical design solutions.">
                     طراح سازه با بیش از ۶ سال سابقه در طراحی، کنترل و بازطراحی سازه‌های بتنی و فولادی. دارای تجربه بررسی و کنترل فنی بیش از ۱۰۰۰ پروژه سازه‌ای از نظر ضوابط آیین‌نامه‌ای و اجرایی. مسلط به نرم‌افزارهای تخصصی طراحی سازه و دارای توانمندی بالا در حل مسائل مهندسی، بهینه‌سازی طرح‌ها و ارائه راهکارهای اجرایی. فعال در حوزه برنامه‌نویسی مهندسی و توسعه ابزارهای نرم‌افزاری جهت افزایش دقت و سرعت فرآیند طراحی.
                 </p>
                 
@@ -363,10 +559,10 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="bg-white section-fade" style="min-height: 200vh;">
         <!-- Header Section -->
-        <div class="flex items-center justify-center bg-white" style="min-height: 45vh; padding: 4rem 0;">
+        <div class="flex items-center justify-center bg-white" style="min-height: 45vh; padding: 3rem 0;">
             <div class="container mx-auto px-6 text-center">
-                <h2 class="text-4xl font-bold text-gray-800 mb-6 dark-text-fix" data-fa="پروژه‌های طراحی سازه" data-en="Structural Design Projects">پروژه‌های طراحی سازه</h2>
-                <p class="text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto text-center text-justify" data-fa="با سال‌ها تجربه تخصصی در زمینه کنترل، طراحی و بهینه‌سازی سازه‌های بتنی، فولادی و صنعتی، پروژه‌های متعددی را در مقیاس‌ها و کاربری‌های مختلف با موفقیت از مرحله تحلیل و طراحی تا اجرا همراهی کرده‌ام. در تمامی پروژه‌ها، تمرکز من بر ارائه طرح‌هایی ایمن، دقیق و منطبق با شرایط واقعی اجرا بوده است که نمونه‌هایی از آن‌ها در ادامه قابل مشاهده است. در فرآیند طراحی سازه، رعایت کامل ضوابط و الزامات آیین‌نامه‌های معتبر ملی و بین‌المللی همواره در اولویت قرار دارد. در کنار تأمین ایمنی و انطباق آیین‌نامه‌ای، رویکرد من مبتنی بر طراحی بهینه و اقتصادی است؛ به‌گونه‌ای که ضمن دستیابی به عملکرد مطلوب سازه، از مصرف غیرضروری مصالح جلوگیری شده و هزینه‌های اجرایی پروژه به‌صورت منطقی و مهندسی‌شده کنترل می‌شود. در صورت تمایل، آماده‌ام طراحی سازه، صحت‌سنجی طراحی و بهینه‌سازی پروژه شما را با بالاترین استانداردهای فنی، دقت مهندسی و رویکردی مسئولانه بر عهده بگیرم. جهت دریافت مشاوره تخصصی و بررسی اولیه پروژه، از طریق راه‌های ارتباطی درج‌شده در انتهای سایت با من در تماس باشید." data-en="With years of specialized experience in the control, design, and optimization of concrete, steel, and industrial structures, I have successfully accompanied numerous projects of various scales and uses from the analysis and design phase to execution. In all projects, my focus has been on providing safe, precise designs that comply with actual construction conditions, examples of which can be seen below. In the structural design process, full compliance with the requirements of valid national and international codes is always a priority. Alongside ensuring safety and code compliance, my approach is based on optimal and economical design; in such a way that while achieving the desired structural performance, unnecessary material consumption is prevented and project execution costs are controlled in a rational and engineered manner. If interested, I am ready to undertake the structural design, design verification, and optimization of your project with the highest technical standards, engineering precision, and a responsible approach. For specialized consultation and initial project review, please contact me through the communication channels listed at the bottom of the site.">
+                <h2 class="text-2xl md:text-4xl font-bold text-gray-800 mb-6 dark-text-fix" data-fa="پروژه‌های طراحی سازه" data-en="Structural Design Projects">پروژه‌های طراحی سازه</h2>
+                <p class="text-sm md:text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto text-center text-justify" data-fa="با سال‌ها تجربه تخصصی در زمینه کنترل، طراحی و بهینه‌سازی سازه‌های بتنی، فولادی و صنعتی، پروژه‌های متعددی را در مقیاس‌ها و کاربری‌های مختلف با موفقیت از مرحله تحلیل و طراحی تا اجرا همراهی کرده‌ام. در تمامی پروژه‌ها، تمرکز من بر ارائه طرح‌هایی ایمن، دقیق و منطبق با شرایط واقعی اجرا بوده است که نمونه‌هایی از آن‌ها در ادامه قابل مشاهده است. در فرآیند طراحی سازه، رعایت کامل ضوابط و الزامات آیین‌نامه‌های معتبر ملی و بین‌المللی همواره در اولویت قرار دارد. در کنار تأمین ایمنی و انطباق آیین‌نامه‌ای، رویکرد من مبتنی بر طراحی بهینه و اقتصادی است؛ به‌گونه‌ای که ضمن دستیابی به عملکرد مطلوب سازه، از مصرف غیرضروری مصالح جلوگیری شده و هزینه‌های اجرایی پروژه به‌صورت منطقی و مهندسی‌شده کنترل می‌شود. در صورت تمایل، آماده‌ام طراحی سازه، صحت‌سنجی طراحی و بهینه‌سازی پروژه شما را با بالاترین استانداردهای فنی، دقت مهندسی و رویکردی مسئولانه بر عهده بگیرم. جهت دریافت مشاوره تخصصی و بررسی اولیه پروژه، از طریق راه‌های ارتباطی درج‌شده در انتهای سایت با من در تماس باشید." data-en="With years of specialized experience in the control, design, and optimization of concrete, steel, and industrial structures, I have successfully accompanied numerous projects of various scales and uses from the analysis and design phase to execution. In all projects, my focus has been on providing safe, precise designs that comply with actual construction conditions, examples of which can be seen below. In the structural design process, full compliance with the requirements of valid national and international codes is always a priority. Alongside ensuring safety and code compliance, my approach is based on optimal and economical design; in such a way that while achieving the desired structural performance, unnecessary material consumption is prevented and project execution costs are controlled in a rational and engineered manner. If interested, I am ready to undertake the structural design, design verification, and optimization of your project with the highest technical standards, engineering precision, and a responsible approach. For specialized consultation and initial project review, please contact me through the communication channels listed at the bottom of the site.">
                     با سال‌ها تجربه تخصصی در زمینه کنترل، طراحی و بهینه‌سازی سازه‌های بتنی، فولادی و صنعتی، پروژه‌های متعددی را در مقیاس‌ها و کاربری‌های مختلف با موفقیت از مرحله تحلیل و طراحی تا اجرا همراهی کرده‌ام. در تمامی پروژه‌ها، تمرکز من بر ارائه طرح‌هایی ایمن، دقیق و منطبق با شرایط واقعی اجرا بوده است که نمونه‌هایی از آن‌ها در ادامه قابل مشاهده است.
 
                     در فرآیند طراحی سازه، رعایت کامل ضوابط و الزامات آیین‌نامه‌های معتبر ملی و بین‌المللی همواره در اولویت قرار دارد. در کنار تأمین ایمنی و انطباق آیین‌نامه‌ای، رویکرد من مبتنی بر طراحی بهینه و اقتصادی است؛ به‌گونه‌ای که ضمن دستیابی به عملکرد مطلوب سازه، از مصرف غیرضروری مصالح جلوگیری شده و هزینه‌های اجرایی پروژه به‌صورت منطقی و مهندسی‌شده کنترل می‌شود.
@@ -378,42 +574,42 @@
         
         <!-- Projects Section -->
         <div class="bg-white" style="min-height: 155vh; padding: 2rem 0;">
-            <div class="container mx-auto px-6">
+            <div class="container mx-auto px-4 md:px-6">
                 <div class="max-w-4xl mx-auto">
                     <div class="space-y-3">
                     <!-- New Project 1: مجتمع مسکونی بتنی -->
-                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                    <div class="flex items-center gap-4 md:gap-8 bg-gray-50 rounded-lg shadow-lg p-4 md:p-6 card-hover">
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="مجتمع مسکونی بتنی" data-en="Concrete Residential Complex">مجتمع مسکونی بتنی</h3>
-                            <div class="space-y-3 text-gray-600">
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 dark-text-fix" data-fa="مجتمع مسکونی بتنی" data-en="Concrete Residential Complex">مجتمع مسکونی بتنی</h3>
+                            <div class="space-y-2 md:space-y-3 text-gray-600 text-sm md:text-base">
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="سیستم سازه‌ای:" data-en="Structural System:">سیستم سازه‌ای:</span> <span data-fa="قاب خمشی ویژه بتنی" data-en="Special Concrete Moment Frame">قاب خمشی ویژه بتنی</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="مساحت پروژه:" data-en="Project Area:">مساحت پروژه:</span> <span data-fa="۵۵۰۰ متر مربع" data-en="5,500 m²">۵۵۰۰ متر مربع</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="موقعیت پروژه:" data-en="Location:">موقعیت پروژه:</span> <span data-fa="اکبرآباد فارس" data-en="Akbarabad, Fars, Iran">اکبرآباد فارس</span></p>
                             </div>
                         </div>
-                        <div class="flex-1 grid grid-cols-2 gap-4">
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                        <div class="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project6-1.jpg" alt="مجتمع مسکونی بتنی - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project6-2.jpg" alt="مجتمع مسکونی بتنی - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
 
                     <!-- New Project 2: ساختمان اداری 19 طبقه فولادی -->
-                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
-                        <div class="flex-1 grid grid-cols-2 gap-4">
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                    <div class="flex items-center gap-4 md:gap-8 bg-gray-50 rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                        <div class="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project7-1.jpg" alt="ساختمان اداری 19 طبقه فولادی - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project7-2.jpg" alt="ساختمان اداری 19 طبقه فولادی - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="ساختمان اداری ۱۹ طبقه فولادی" data-en="19-Story Steel Office Building">ساختمان اداری ۱۹ طبقه فولادی</h3>
-                            <div class="space-y-3 text-gray-600">
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 dark-text-fix" data-fa="ساختمان اداری ۱۹ طبقه فولادی" data-en="19-Story Steel Office Building">ساختمان اداری ۱۹ طبقه فولادی</h3>
+                            <div class="space-y-2 md:space-y-3 text-gray-600 text-sm md:text-base">
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="سیستم سازه‌ای:" data-en="Structural System:">سیستم سازه‌ای:</span> <span data-fa="قاب خمشی کامپوزیت ویژه" data-en="Special Composite Moment Frame">قاب خمشی کامپوزیت ویژه</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="مساحت پروژه:" data-en="Project Area:">مساحت پروژه:</span> <span data-fa="۲۰۰۰۰ متر مربع" data-en="20,000 m²">۲۰۰۰۰ متر مربع</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="موقعیت پروژه:" data-en="Location:">موقعیت پروژه:</span> <span data-fa="نیاوران تهران" data-en="Niavaran, Tehran, Iran">نیاوران تهران</span></p>
@@ -422,38 +618,38 @@
                     </div>
 
                     <!-- Project 1 -->
-                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                    <div class="flex items-center gap-4 md:gap-8 bg-gray-50 rounded-lg shadow-lg p-4 md:p-6 card-hover">
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="آرامگاه شهدای گمنام" data-en="Unknown Martyrs' Mausoleum">آرامگاه شهدای گمنام</h3>
-                            <div class="space-y-3 text-gray-600">
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 dark-text-fix" data-fa="آرامگاه شهدای گمنام" data-en="Unknown Martyrs' Mausoleum">آرامگاه شهدای گمنام</h3>
+                            <div class="space-y-2 md:space-y-3 text-gray-600 text-sm md:text-base">
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="سیستم سازه‌ای:" data-en="Structural System:">سیستم سازه‌ای:</span> <span data-fa="دیوار طره‌ای" data-en="Cantilever Wall">دیوار طره‌ای</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="مساحت پروژه:" data-en="Project Area:">مساحت پروژه:</span> <span data-fa="۸۷ متر مربع" data-en="87 m²">۸۷ متر مربع</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="موقعیت پروژه:" data-en="Location:">موقعیت پروژه:</span> <span data-fa="شهر قم" data-en="Qom, Iran">شهر قم</span></p>
                             </div>
                         </div>
-                        <div class="flex-1 grid grid-cols-2 gap-4">
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                        <div class="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project1-1.jpg" alt="آرامگاه شهدای گمنام - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project1-2.jpg" alt="آرامگاه شهدای گمنام - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
 
                     <!-- Project 2 -->
-                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
-                        <div class="flex-1 grid grid-cols-2 gap-4">
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                    <div class="flex items-center gap-4 md:gap-8 bg-gray-50 rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                        <div class="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project2-1.jpg" alt="ساختمان مسکونی 4 طبقه - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project2-2.jpg" alt="ساختمان مسکونی 4 طبقه - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="ساختمان مسکونی 4 طبقه بتنی" data-en="4-Story Concrete Residential Building">ساختمان مسکونی 4 طبقه بتنی</h3>
-                            <div class="space-y-3 text-gray-600">
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 dark-text-fix" data-fa="ساختمان مسکونی 4 طبقه بتنی" data-en="4-Story Concrete Residential Building">ساختمان مسکونی 4 طبقه بتنی</h3>
+                            <div class="space-y-2 md:space-y-3 text-gray-600 text-sm md:text-base">
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="سیستم سازه‌ای:" data-en="Structural System:">سیستم سازه‌ای:</span> <span data-fa="قاب خمشی متوسط بتنی" data-en="Intermediate Concrete Moment Frame">قاب خمشی متوسط بتنی</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="مساحت پروژه:" data-en="Project Area:">مساحت پروژه:</span> <span data-fa="۷۸۰ متر مربع" data-en="780 m²">۷۸۰ متر مربع</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="موقعیت پروژه:" data-en="Location:">موقعیت پروژه:</span> <span data-fa="شهر مریوان" data-en="Marivan, Iran">شهر مریوان</span></p>
@@ -462,46 +658,44 @@
                     </div>
 
                     <!-- Project 3 -->
-                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
+                    <div class="flex items-center gap-4 md:gap-8 bg-gray-50 rounded-lg shadow-lg p-4 md:p-6 card-hover">
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="شهربازی کیش" data-en="Kish Amusement Park">شهربازی کیش</h3>
-                            <div class="space-y-3 text-gray-600">
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 dark-text-fix" data-fa="شهربازی کیش" data-en="Kish Amusement Park">شهربازی کیش</h3>
+                            <div class="space-y-2 md:space-y-3 text-gray-600 text-sm md:text-base">
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="سیستم سازه‌ای:" data-en="Structural System:">سیستم سازه‌ای:</span> <span data-fa="قاب خمشی متوسط بتنی با دیوار حائل" data-en="Intermediate Concrete Moment Frame with Retaining Wall">قاب خمشی متوسط بتنی با دیوار حائل</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="مساحت پروژه:" data-en="Project Area:">مساحت پروژه:</span> <span data-fa="۳۰۰ متر مربع" data-en="300 m²">۳۰۰ متر مربع</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="موقعیت پروژه:" data-en="Location:">موقعیت پروژه:</span> <span data-fa="جزیره کیش" data-en="Kish Island, Iran">جزیره کیش</span></p>
                             </div>
                         </div>
-                        <div class="flex-1 grid grid-cols-2 gap-4">
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                        <div class="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project3-1.jpg" alt="شهربازی کیش - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project3-2.jpg" alt="شهربازی کیش - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
                         </div>
                     </div>
 
                     <!-- Project 4 -->
-                    <div class="flex items-center gap-8 bg-gray-50 rounded-lg shadow-lg p-6 card-hover">
-                        <div class="flex-1 grid grid-cols-2 gap-4">
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                    <div class="flex items-center gap-4 md:gap-8 bg-gray-50 rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                        <div class="flex-1 grid grid-cols-2 gap-2 md:gap-4">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project4-1.jpg" alt="کارگاه موقت تولید قارچ - تصویر 1" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
-                            <div class="rounded-lg h-32 overflow-hidden cursor-pointer">
+                            <div class="rounded-lg h-24 md:h-32 overflow-hidden cursor-pointer">
                                 <img src="pictures/project4-2.jpg" alt="کارگاه موقت تولید قارچ - تصویر 2" class="w-full h-full object-contain hover:scale-105 transition-transform duration-300" onclick="openImageModal(this)">
                             </div>
                         </div>
                         <div class="flex-1">
-                            <h3 class="text-2xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="کارگاه موقت تولید قارچ" data-en="Temporary Mushroom Production Workshop">کارگاه موقت تولید قارچ</h3>
-                            <div class="space-y-3 text-gray-600">
+                            <h3 class="text-lg md:text-2xl font-bold text-gray-800 mb-3 md:mb-4 dark-text-fix" data-fa="کارگاه موقت تولید قارچ" data-en="Temporary Mushroom Production Workshop">کارگاه موقت تولید قارچ</h3>
+                            <div class="space-y-2 md:space-y-3 text-gray-600 text-sm md:text-base">
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="سیستم سازه‌ای:" data-en="Structural System:">سیستم سازه‌ای:</span> <span data-fa="قاب فولادی مهاربندی همگرا" data-en="Concentrically Braced Steel Frame">قاب فولادی مهاربندی همگرا</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="مساحت پروژه:" data-en="Project Area:">مساحت پروژه:</span> <span data-fa="۴۰۰ متر مربع" data-en="400 m²">۴۰۰ متر مربع</span></p>
                                 <p><span class="font-semibold text-gray-800 dark-text-fix" data-fa="موقعیت پروژه:" data-en="Location:">موقعیت پروژه:</span> <span data-fa="شهر سروآباد" data-en="Sarvabad, Iran">شهر سروآباد</span></p>
                             </div>
                         </div>
                     </div>
-
-
 
                     </div>
                 </div>
@@ -511,29 +705,28 @@
 
     <!-- Courses Section -->
     <section id="courses" class="min-h-screen flex items-center section-fade">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center text-gray-800 mb-12 dark-text-fix" data-fa="دوره‌های آموزشی" data-en="Training Courses">دوره‌های آموزشی</h2>
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center text-gray-800 mb-8 md:mb-12 dark-text-fix" data-fa="دوره‌های آموزشی" data-en="Training Courses">دوره‌های آموزشی</h2>
             <div class="max-w-4xl mx-auto">
-                <div class="bg-white rounded-lg shadow-lg p-8 card-hover">
-                    <div class="mb-6 flex justify-start">
-                        <div class="w-20 h-20 overflow-hidden rounded-lg">
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-8 card-hover">
+                    <div class="mb-4 md:mb-6 flex justify-start">
+                        <div class="w-16 h-16 md:w-20 md:h-20 overflow-hidden rounded-lg">
                             <img src="pictures/parno-logo.png" alt="Parno Software Logo" class="w-full h-full object-contain">
                         </div>
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 dark-text-fix" data-fa="آموزش صفر تا صد نرم‌افزارهای پارنو و آیمدل" data-en="Complete Parno & iModel Software Training">آموزش صفر تا صد نرم‌افزارهای پارنو و آیمدل</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed text-center text-justify" data-fa="در این دوره آموزشی نرم‌افزارهای پارنو و آیمدل به صورت دقیق و کامل توضیح داده شده است. در این دوره تمامی منوها و گزینه‌های موجود در نرم‌افزار پارنو و آیمدل توضیح داده شده و به صورت همزمان پروژه‌هایی در نرم‌افزارها ایجاد شده و چالش‌ها و خطاها و اخطارهای کنترلی احتمالی بررسی شده است. همچنین ترفندهای حرفه‌ای بهینه‌سازی در نرم‌افزار پارنو و امکانات جالب نرم‌افزار که در ترسیمات می‌تواند ما را به نقشه دلخواهمان نزدیکتر کند، شرح داده شده است." data-en="In this training course, Parno and iModel software are explained accurately and completely. All menus and options available in Parno and iModel software are explained, and simultaneously projects are created in the software, reviewing challenges, errors, and potential control warnings. Also, professional optimization tricks in Parno software and interesting features that can bring our drawings closer to our desired plans are described.">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 dark-text-fix" data-fa="آموزش صفر تا صد نرم‌افزارهای پارنو و آیمدل" data-en="Complete Parno & iModel Software Training">آموزش صفر تا صد نرم‌افزارهای پارنو و آیمدل</h3>
+                    <p class="text-gray-600 mb-6 leading-relaxed text-center text-justify text-sm md:text-base" data-fa="در این دوره آموزشی نرم‌افزارهای پارنو و آیمدل به صورت دقیق و کامل توضیح داده شده است. در این دوره تمامی منوها و گزینه‌های موجود در نرم‌افزار پارنو و آیمدل توضیح داده شده و به صورت همزمان پروژه‌هایی در نرم‌افزارها ایجاد شده و چالش‌ها و خطاها و اخطارهای کنترلی احتمالی بررسی شده است. همچنین ترفندهای حرفه‌ای بهینه‌سازی در نرم‌افزار پارنو و امکانات جالب نرم‌افزار که در ترسیمات می‌تواند ما را به نقشه دلخواهمان نزدیکتر کند، شرح داده شده است." data-en="In this training course, Parno and iModel software are explained accurately and completely. All menus and options available in Parno and iModel software are explained, and simultaneously projects are created in the software, reviewing challenges, errors, and potential control warnings. Also, professional optimization tricks in Parno software and interesting features that can bring our drawings closer to our desired plans are described.">
                         در این دوره آموزشی نرم‌افزارهای پارنو و آیمدل به صورت دقیق و کامل توضیح داده شده است. در این دوره تمامی منوها و گزینه‌های موجود در نرم‌افزار پارنو و آیمدل توضیح داده شده و به صورت همزمان پروژه‌هایی در نرم‌افزارها ایجاد شده و چالش‌ها و خطاها و اخطارهای کنترلی احتمالی بررسی شده است. همچنین ترفندهای حرفه‌ای بهینه‌سازی در نرم‌افزار پارنو و امکانات جالب نرم‌افزار که در ترسیمات می‌تواند ما را به نقشه دلخواهمان نزدیکتر کند، شرح داده شده است.
                     </p>
-                    <div class="flex justify-between items-center">
-                        <div class="text-sm text-gray-500">
-                            <p data-fa="تعداد قسمت‌ها: ۱۵ قسمت" data-en="Episodes: 15">تعداد قسمت‌ها: ۱۵ قسمت</p>
-                            <p data-fa="مدت زمان: ۹ ساعت" data-en="Duration: 9 Hours">مدت زمان: ۹ ساعت</p>
-                        </div>
-                        <div class="flex gap-4">
-                            <button id="courseInfoBtn" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition" data-fa="نحوه تهیه دوره آموزشی" data-en="How to Purchase">نحوه تهیه دوره آموزشی</button>
-                            <button id="courseActivationBtn" class="bg-orange-600 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition" data-fa="راهنمای فعالسازی دوره آموزشی" data-en="Activation Guide">راهنمای فعالسازی دوره آموزشی</button>
-                            <button id="courseDownloadBtn" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition" data-fa="دانلود دوره آموزشی" data-en="Download Course">دانلود دوره آموزشی</button>
-                        </div>
+                    <!-- Course info and buttons - responsive layout -->
+                    <div class="text-sm text-gray-500 mb-4">
+                        <p data-fa="تعداد قسمت‌ها: ۱۵ قسمت" data-en="Episodes: 15">تعداد قسمت‌ها: ۱۵ قسمت</p>
+                        <p data-fa="مدت زمان: ۹ ساعت" data-en="Duration: 9 Hours">مدت زمان: ۹ ساعت</p>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <button id="courseInfoBtn" class="bg-green-600 text-white px-4 py-3 rounded-lg hover:bg-green-700 transition text-sm flex-1" data-fa="نحوه تهیه دوره آموزشی" data-en="How to Purchase">نحوه تهیه دوره آموزشی</button>
+                        <button id="courseActivationBtn" class="bg-orange-600 text-white px-4 py-3 rounded-lg hover:bg-orange-700 transition text-sm flex-1" data-fa="راهنمای فعالسازی دوره آموزشی" data-en="Activation Guide">راهنمای فعالسازی دوره آموزشی</button>
+                        <button id="courseDownloadBtn" class="bg-blue-600 text-white px-4 py-3 rounded-lg hover:bg-blue-700 transition text-sm flex-1" data-fa="دانلود دوره آموزشی" data-en="Download Course">دانلود دوره آموزشی</button>
                     </div>
                 </div>
             </div>
@@ -542,16 +735,16 @@
 
     <!-- Software Section -->
     <section id="software" class="min-h-screen flex items-center bg-white section-fade">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="نرم‌افزارهای توسعه یافته" data-en="Developed Software">نرم‌افزارهای توسعه یافته</h2>
-                <p class="text-lg text-gray-600 leading-relaxed text-center text-justify" data-fa="یکی از حوزه‌های مورد علاقه من برنامه‌نویسی می‌باشد و همواره سعی کرده‌ام برنامه‌هایی را که در حوزه عمران می‌تواند کمک کننده باشد را تولید کنم و این راه را نیز تا تولید محصولات بیشتر و رفع نیاز بیشتر ادامه خواهم داد. در صورتی که پیشنهاد یا سفارشی برای ساخت یک برنامه دارید، خوشحال می‌شوم آنرا با من به اشتراک بگذارید." data-en="One of my areas of interest is programming, and I have always tried to produce programs that can be helpful in the civil engineering field. I will continue this path to produce more products and meet more needs. If you have a suggestion or order for building a program, I would be happy for you to share it with me.">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="max-w-4xl mx-auto text-center mb-8 md:mb-12">
+                <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 dark-text-fix" data-fa="نرم‌افزارهای توسعه یافته" data-en="Developed Software">نرم‌افزارهای توسعه یافته</h2>
+                <p class="text-sm md:text-lg text-gray-600 leading-relaxed text-center text-justify" data-fa="یکی از حوزه‌های مورد علاقه من برنامه‌نویسی می‌باشد و همواره سعی کرده‌ام برنامه‌هایی را که در حوزه عمران می‌تواند کمک کننده باشد را تولید کنم و این راه را نیز تا تولید محصولات بیشتر و رفع نیاز بیشتر ادامه خواهم داد. در صورتی که پیشنهاد یا سفارشی برای ساخت یک برنامه دارید، خوشحال می‌شوم آنرا با من به اشتراک بگذارید." data-en="One of my areas of interest is programming, and I have always tried to produce programs that can be helpful in the civil engineering field. I will continue this path to produce more products and meet more needs. If you have a suggestion or order for building a program, I would be happy for you to share it with me.">
                     یکی از حوزه‌های مورد علاقه من برنامه‌نویسی می‌باشد و همواره سعی کرده‌ام برنامه‌هایی را که در حوزه عمران می‌تواند کمک کننده باشد را تولید کنم و این راه را نیز تا تولید محصولات بیشتر و رفع نیاز بیشتر ادامه خواهم داد. در صورتی که پیشنهاد یا سفارشی برای ساخت یک برنامه دارید، خوشحال می‌شوم آنرا با من به اشتراک بگذارید.
                 </p>
             </div>
             <div class="max-w-4xl mx-auto">
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-6 card-hover">
+                <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg p-5 md:p-6 card-hover">
                         <div class="w-12 h-12 mb-4 overflow-hidden rounded-lg">
                             <img src="pictures/steel-column-logo.png" alt="Steel Column Design 21 Logo" class="w-full h-full object-contain">
                         </div>
@@ -564,7 +757,7 @@
                         <button class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition text-sm" data-fa="دانلود" data-en="Download">دانلود</button>
                     </div>
                     
-                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-6 card-hover">
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-lg p-5 md:p-6 card-hover">
                         <div class="w-12 h-12 mb-4 overflow-hidden rounded-lg">
                             <img src="pictures/retaining-wall-logo.png" alt="Retaining Wall 21 Logo" class="w-full h-full object-contain">
                         </div>
@@ -583,45 +776,45 @@
 
     <!-- Contact Section -->
     <section id="contact" class="min-h-screen flex items-center contact-gradient-bg text-white section-fade">
-        <div class="container mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-8 mt-16" data-fa="راه‌های ارتباطی" data-en="Contact Me">راه‌های ارتباطی</h2>
+        <div class="container mx-auto px-4 md:px-6">
+            <h2 class="text-2xl md:text-3xl font-bold text-center mb-6 md:mb-8 mt-12 md:mt-16" data-fa="راه‌های ارتباطی" data-en="Contact Me">راه‌های ارتباطی</h2>
             <div class="max-w-4xl mx-auto">
-                <p class="text-lg mb-8 text-center text-justify max-w-3xl mx-auto" data-fa="جهت دریافت دوره‌های آموزشی، مشاوره و طراحی سازه، همکاری با من و ارائه پیشنهاد نرم‌افزاری، از طریق یکی از راه‌های زیر با من در ارتباط باشید." data-en="For training courses, structural design consultation, collaboration, and software suggestions, please contact me through one of the following channels.">جهت دریافت دوره‌های آموزشی، مشاوره و طراحی سازه، همکاری با من و ارائه پیشنهاد نرم‌افزاری، از طریق یکی از راه‌های زیر با من در ارتباط باشید.</p>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <a href="https://www.instagram.com/payman.hosseini?igsh=eTlpbXRwbTJjZmw2" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
-                        <i class="fab fa-instagram text-3xl mb-3"></i>
-                        <h3 class="font-semibold mb-2" data-fa="اینستاگرام" data-en="Instagram">اینستاگرام</h3>
-                        <p class="text-sm opacity-90" dir="ltr">@payman.hosseini</p>
+                <p class="text-sm md:text-lg mb-6 md:mb-8 text-center text-justify max-w-3xl mx-auto" data-fa="جهت دریافت دوره‌های آموزشی، مشاوره و طراحی سازه، همکاری با من و ارائه پیشنهاد نرم‌افزاری، از طریق یکی از راه‌های زیر با من در ارتباط باشید." data-en="For training courses, structural design consultation, collaboration, and software suggestions, please contact me through one of the following channels.">جهت دریافت دوره‌های آموزشی، مشاوره و طراحی سازه، همکاری با من و ارائه پیشنهاد نرم‌افزاری، از طریق یکی از راه‌های زیر با من در ارتباط باشید.</p>
+                <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                    <a href="https://www.instagram.com/payman.hosseini?igsh=eTlpbXRwbTJjZmw2" class="contact-btn bg-white bg-opacity-20 rounded-lg p-4 md:p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fab fa-instagram text-2xl md:text-3xl mb-2 md:mb-3"></i>
+                        <h3 class="font-semibold mb-1 md:mb-2 text-sm md:text-base" data-fa="اینستاگرام" data-en="Instagram">اینستاگرام</h3>
+                        <p class="text-xs md:text-sm opacity-90" dir="ltr">@payman.hosseini</p>
                     </a>
                     
-                    <a href="https://t.me/Soft4Civil" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
-                        <i class="fab fa-telegram text-3xl mb-3"></i>
-                        <h3 class="font-semibold mb-2" data-fa="تلگرام" data-en="Telegram">تلگرام</h3>
-                        <p class="text-sm opacity-90" dir="ltr">@Soft4Civil</p>
+                    <a href="https://t.me/Soft4Civil" class="contact-btn bg-white bg-opacity-20 rounded-lg p-4 md:p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fab fa-telegram text-2xl md:text-3xl mb-2 md:mb-3"></i>
+                        <h3 class="font-semibold mb-1 md:mb-2 text-sm md:text-base" data-fa="تلگرام" data-en="Telegram">تلگرام</h3>
+                        <p class="text-xs md:text-sm opacity-90" dir="ltr">@Soft4Civil</p>
                     </a>
                     
-                    <a href="mailto:soft4civil@gmail.com" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
-                        <i class="fas fa-envelope text-3xl mb-3"></i>
-                        <h3 class="font-semibold mb-2" data-fa="ایمیل" data-en="Email">ایمیل</h3>
-                        <p class="text-sm opacity-90" dir="ltr">soft4civil@gmail.com</p>
+                    <a href="mailto:soft4civil@gmail.com" class="contact-btn bg-white bg-opacity-20 rounded-lg p-4 md:p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fas fa-envelope text-2xl md:text-3xl mb-2 md:mb-3"></i>
+                        <h3 class="font-semibold mb-1 md:mb-2 text-sm md:text-base" data-fa="ایمیل" data-en="Email">ایمیل</h3>
+                        <p class="text-xs md:text-sm opacity-90" dir="ltr">soft4civil@gmail.com</p>
                     </a>
                     
-                    <a href="https://wa.me/qr/3FHS4T5W7YXGD1" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
-                        <i class="fab fa-whatsapp text-3xl mb-3"></i>
-                        <h3 class="font-semibold mb-2" data-fa="واتس‌آپ" data-en="WhatsApp">واتس‌آپ</h3>
-                        <p class="text-sm opacity-90" data-fa="پیام در واتس‌آپ" data-en="Message on WhatsApp">پیام در واتس‌آپ</p>
+                    <a href="https://wa.me/qr/3FHS4T5W7YXGD1" class="contact-btn bg-white bg-opacity-20 rounded-lg p-4 md:p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fab fa-whatsapp text-2xl md:text-3xl mb-2 md:mb-3"></i>
+                        <h3 class="font-semibold mb-1 md:mb-2 text-sm md:text-base" data-fa="واتس‌آپ" data-en="WhatsApp">واتس‌آپ</h3>
+                        <p class="text-xs md:text-sm opacity-90" data-fa="پیام در واتس‌آپ" data-en="Message on WhatsApp">پیام در واتس‌آپ</p>
                     </a>
                     
-                    <a href="tel:+989210833484" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
-                        <i class="fas fa-phone text-3xl mb-3"></i>
-                        <h3 class="font-semibold mb-2" data-fa="تماس تلفنی" data-en="Phone Call">تماس تلفنی</h3>
-                        <p class="text-sm opacity-90">۰۹۲۱-۰۸۳-۳۴۸۴</p>
+                    <a href="tel:+989210833484" class="contact-btn bg-white bg-opacity-20 rounded-lg p-4 md:p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fas fa-phone text-2xl md:text-3xl mb-2 md:mb-3"></i>
+                        <h3 class="font-semibold mb-1 md:mb-2 text-sm md:text-base" data-fa="تماس تلفنی" data-en="Phone Call">تماس تلفنی</h3>
+                        <p class="text-xs md:text-sm opacity-90">۰۹۲۱-۰۸۳-۳۴۸۴</p>
                     </a>
                     
-                    <a href="https://eitaa.com/soft4civil" class="contact-btn bg-white bg-opacity-20 rounded-lg p-6 text-center hover:bg-opacity-30 transition">
-                        <i class="fas fa-paper-plane text-3xl mb-3"></i>
-                        <h3 class="font-semibold mb-2" data-fa="ایتا" data-en="Eitaa">ایتا</h3>
-                        <p class="text-sm opacity-90" dir="ltr">@soft4civil</p>
+                    <a href="https://eitaa.com/soft4civil" class="contact-btn bg-white bg-opacity-20 rounded-lg p-4 md:p-6 text-center hover:bg-opacity-30 transition">
+                        <i class="fas fa-paper-plane text-2xl md:text-3xl mb-2 md:mb-3"></i>
+                        <h3 class="font-semibold mb-1 md:mb-2 text-sm md:text-base" data-fa="ایتا" data-en="Eitaa">ایتا</h3>
+                        <p class="text-xs md:text-sm opacity-90" dir="ltr">@soft4civil</p>
                     </a>
                 </div>
             </div>
@@ -630,7 +823,7 @@
 
     <!-- Modal for Course Info -->
     <div id="courseModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center">
-        <div class="bg-white rounded-lg p-8 max-w-md mx-4 relative">
+        <div class="bg-white rounded-lg p-6 md:p-8 max-w-md mx-4 relative">
             <button id="closeModal" class="absolute top-4 left-4 text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
             <div class="text-center">
                 <i class="fas fa-info-circle text-4xl text-blue-600 mb-4"></i>
@@ -651,13 +844,49 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
+    <footer class="bg-gray-800 text-white py-6 md:py-8">
         <div class="container mx-auto px-6 text-center">
-            <p class="mb-4" data-fa="© ۱۴۰۴ پیمان حسینی. تمامی حقوق محفوظ است." data-en="© 2025 Payman Hosseini. All rights reserved.">&copy; ۱۴۰۴ پیمان حسینی. تمامی حقوق محفوظ است.</p>
+            <p class="mb-4 text-sm md:text-base" data-fa="© ۱۴۰۴ پیمان حسینی. تمامی حقوق محفوظ است." data-en="© 2025 Payman Hosseini. All rights reserved.">&copy; ۱۴۰۴ پیمان حسینی. تمامی حقوق محفوظ است.</p>
         </div>
     </footer>
 
     <script>
+        // ============ HAMBURGER MENU ============
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            mobileMenu.classList.toggle('open');
+            const icon = this.querySelector('i');
+            if (mobileMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                mobileMenu.classList.remove('open');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Close mobile menu on resize to desktop
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                mobileMenu.classList.remove('open');
+                const icon = hamburgerBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
         // ============ LANGUAGE TOGGLE ============
         let currentLang = 'fa';
 
@@ -694,7 +923,6 @@
                     if (el.children.length === 0) {
                         el.textContent = text;
                     } else {
-                        // For elements with child elements (like the CV button with icon)
                         const icon = el.querySelector('i');
                         if (icon) {
                             const span = el.querySelector('span[data-fa][data-en]');
@@ -708,7 +936,21 @@
                 }
             });
 
-            // Save preference
+            // Update mobile menu links
+            document.querySelectorAll('.mobile-nav-link').forEach(el => {
+                const text = el.getAttribute(`data-${lang}`);
+                if (text) {
+                    const icon = el.querySelector('i');
+                    if (icon) {
+                        el.innerHTML = '';
+                        el.appendChild(icon);
+                        el.append(' ' + text);
+                    } else {
+                        el.textContent = text;
+                    }
+                }
+            });
+
             localStorage.setItem('lang', lang);
         }
 
