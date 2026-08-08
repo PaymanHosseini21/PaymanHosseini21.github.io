@@ -247,7 +247,7 @@
             transition: all 0.3s ease;
             border: 2px solid rgba(255,255,255,0.3);
             background: rgba(255,255,255,0.15);
-            color: #e5e7eb;
+            color: #ffffff;
             flex-shrink: 0;
             white-space: nowrap;
         }
@@ -350,16 +350,16 @@
         }
         html.dark .text-gray-800,
         html.dark .text-gray-700 {
-            color: #f3f4f6;
+            color: #ffffff;
         }
         html.dark .text-gray-600 {
-            color: #d1d5db;
+            color: #ffffff;
         }
         html.dark .text-gray-500 {
-            color: #9ca3af;
+            color: #ffffff;
         }
         html.dark .dark-text-fix {
-            color: #f3f4f6 !important;
+            color: #ffffff !important;
         }
         html.dark #portfolio .bg-gray-50 {
             background-color: #374151;
@@ -383,13 +383,13 @@
             background-color: #1f2937;
         }
         html.dark #about h3.text-xl {
-            color: #f3f4f6 !important;
+            color: #ffffff !important;
         }
         html.dark #courses h3.text-2xl {
-            color: #f3f4f6 !important;
+            color: #ffffff !important;
         }
         html.dark #software h3.text-xl {
-            color: #f3f4f6 !important;
+            color: #ffffff !important;
         }
         html.dark .text-blue-800 {
             color: #93c5fd !important;
@@ -754,7 +754,7 @@
         .portfolio-home-description {
             max-width: 650px;
             margin: 34px 0 0;
-            color: rgba(255, 255, 255, 0.78);
+            color: #ffffff;
             font-size: clamp(15px, 1.8vw, 19px);
             font-weight: 500;
             line-height: 2;
@@ -1094,7 +1094,7 @@
         }
 
         html.dark .portfolio-home-description {
-            color: rgba(255, 255, 255, 0.78);
+            color: #ffffff;
         }
 
         .portfolio-home-button-primary {
@@ -1474,7 +1474,7 @@
         html.dark #contact .text-sm,
         html.dark #contact .text-lg,
         html.dark #contact .text-xs {
-            color: #f5f7ff !important;
+            color: #ffffff !important;
         }
 
         /* Contact cards on the lighter surface */
@@ -1512,14 +1512,14 @@
         #software > .container > .max-w-4xl:first-child .text-gray-800,
         #software > .container > .max-w-4xl:first-child .text-gray-700,
         #software > .container > .max-w-4xl:first-child .dark-text-fix {
-            color: #f7f7fb !important;
+            color: #ffffff !important;
         }
 
         #portfolio .text-gray-600,
         #portfolio .text-gray-500,
         #software > .container > .max-w-4xl:first-child .text-gray-600,
         #software > .container > .max-w-4xl:first-child .text-gray-500 {
-            color: rgba(255, 255, 255, 0.80) !important;
+            color: #ffffff !important;
         }
 
         #portfolio img {
@@ -1831,7 +1831,7 @@
         html.dark #portfolio .dark-text-fix,
         html.dark #portfolio .text-gray-600,
         html.dark #portfolio .text-gray-500 {
-            color: #f5f7ff !important;
+            color: #ffffff !important;
         }
 
         /* Courses now sits on black; keep its outer heading white while its card retains its own surface rules. */
@@ -2181,11 +2181,11 @@
         .software-tool-card.lisp-tool-card h3,
         .software-tool-card.lisp-tool-card p,
         .software-tool-card.lisp-tool-card .dark-text-fix {
-            color: #f8fafc !important;
+            color: #ffffff !important;
         }
 
         .software-tool-card.lisp-tool-card p {
-            color: rgba(248, 250, 252, 0.82) !important;
+            color: #ffffff !important;
         }
 
         .software-tool-card.lisp-tool-card .software-tool-icon {
@@ -2320,7 +2320,7 @@
             direction: ltr;
             unicode-bidi: isolate;
             white-space: nowrap;
-            color: rgba(255, 255, 255, 0.88);
+            color: #ffffff;
             background: rgba(255, 255, 255, 0.12);
             border: 1px solid rgba(255, 255, 255, 0.10);
         }
@@ -2548,7 +2548,7 @@
         html.dark #portfolio .project-file-tab,
         html.dark #portfolio .project-file.is-open .project-file-tab,
         html.dark #portfolio .project-file-tab:hover {
-            color: #f8fafc;
+            color: #ffffff;
             background: linear-gradient(180deg, #141b33, #0d1225);
             box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.07);
         }
@@ -3392,6 +3392,103 @@
             }
         }
 
+
+
+        /* ===== ENGLISH PURE-WHITE TEXT NORMALIZATION ===== */
+        /* Only text is normalized here. Backgrounds, borders, shadows and dark text remain untouched. */
+
+        /* Runtime Tailwind near-white text utilities used on dark LISP cards. */
+        html[lang='en'] #software .lisp-tool-card .text-gray-100,
+        html[lang='en'] #software .lisp-tool-card .text-orange-100,
+        html[lang='en'] #software .lisp-tool-card .text-purple-100,
+        html[lang='en'] #software .lisp-tool-card h3,
+        html[lang='en'] #software .lisp-tool-card p,
+        html[lang='en'] #software .lisp-tool-card .software-update-tag,
+        html[lang='en'] #software .lisp-tool-card .software-download-button {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+
+        /* English intro/outer text that sits directly on permanently dark sections. */
+        html[lang='en'] #software .software-section-intro h2,
+        html[lang='en'] #software .software-section-intro p,
+        html[lang='en'] #courses > .container > h2,
+        html[lang='en'] footer,
+        html[lang='en'] footer p {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+
+        /* In dark theme, all text that belongs to the dark content surfaces is true white. */
+        html[lang='en'].dark #about h1,
+        html[lang='en'].dark #about h2,
+        html[lang='en'].dark #about h3,
+        html[lang='en'].dark #about h4,
+        html[lang='en'].dark #about h5,
+        html[lang='en'].dark #about h6,
+        html[lang='en'].dark #about p,
+        html[lang='en'].dark #about a,
+        html[lang='en'].dark #about span,
+        html[lang='en'].dark #software h1,
+        html[lang='en'].dark #software h2,
+        html[lang='en'].dark #software h3,
+        html[lang='en'].dark #software h4,
+        html[lang='en'].dark #software h5,
+        html[lang='en'].dark #software h6,
+        html[lang='en'].dark #software p,
+        html[lang='en'].dark #software a,
+        html[lang='en'].dark #software span,
+        html[lang='en'].dark #portfolio h1,
+        html[lang='en'].dark #portfolio h2,
+        html[lang='en'].dark #portfolio h3,
+        html[lang='en'].dark #portfolio h4,
+        html[lang='en'].dark #portfolio h5,
+        html[lang='en'].dark #portfolio h6,
+        html[lang='en'].dark #portfolio p,
+        html[lang='en'].dark #portfolio a,
+        html[lang='en'].dark #portfolio span,
+        html[lang='en'].dark #courses h1,
+        html[lang='en'].dark #courses h2,
+        html[lang='en'].dark #courses h3,
+        html[lang='en'].dark #courses h4,
+        html[lang='en'].dark #courses h5,
+        html[lang='en'].dark #courses h6,
+        html[lang='en'].dark #courses p,
+        html[lang='en'].dark #courses a,
+        html[lang='en'].dark #courses span,
+        html[lang='en'].dark #courses button,
+        html[lang='en'].dark #contact h1,
+        html[lang='en'].dark #contact h2,
+        html[lang='en'].dark #contact h3,
+        html[lang='en'].dark #contact h4,
+        html[lang='en'].dark #contact h5,
+        html[lang='en'].dark #contact h6,
+        html[lang='en'].dark #contact p,
+        html[lang='en'].dark #contact a,
+        html[lang='en'].dark #contact span {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+        }
+
+        /* White text must not look gray because of text-element opacity. */
+        html[lang='en'].dark .top-navbar .nav-link,
+        html[lang='en'].dark .mobile-menu .nav-link,
+        html[lang='en'].dark #contact .opacity-90,
+        html[lang='en'].dark #contact .contact-btn p {
+            opacity: 1 !important;
+        }
+
+        /* Hero text in dark theme: true white, without touching the light-theme dark text. */
+        html[lang='en'].dark .portfolio-home-title,
+        html[lang='en'].dark .portfolio-home-title span,
+        html[lang='en'].dark .portfolio-home-description,
+        html[lang='en'].dark .portfolio-home-button-secondary,
+        html[lang='en'].dark .portfolio-home-button-secondary span {
+            color: #ffffff !important;
+            -webkit-text-fill-color: #ffffff !important;
+            opacity: 1 !important;
+        }
+
 </style>
 </head>
 <body class="bg-gray-50">
@@ -4020,11 +4117,11 @@
         });
 
         document.getElementById('courseActivationBtn').addEventListener('click', function() {
-            window.open('https://drive.google.com/file/d/1qnji3DD1wzo1MjOnNhot-VE18anjYJnm/view?usp=drive_link', '_blank');
+            window.open('https://abrehamrahi.ir/o/public/EySAQNoh/', '_blank');
         });
 
         document.getElementById('courseDownloadBtn').addEventListener('click', function() {
-            window.open('https://drive.google.com/file/d/1Xi2KQnLr_iAvhEGPHK1mDjV0lzUFjrt_/view?usp=sharing', '_blank');
+            window.open('https://abrehamrahi.ir/o/public/lQVKKxEP/', '_blank');
         });
 
         document.getElementById('closeModal').addEventListener('click', function() {
